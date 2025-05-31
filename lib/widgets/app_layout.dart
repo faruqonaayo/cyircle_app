@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:cyircle_app/screens/home_screen.dart';
+import 'package:cyircle_app/tabs/home_tab.dart';
 import 'package:cyircle_app/services/auth_services.dart';
 import 'package:cyircle_app/widgets/theme_mode_button.dart';
 
@@ -15,16 +15,16 @@ class _AppLayoutState extends State<AppLayout> {
   var _currentTabIndex = 0;
 
   final _screens = [
-    const HomeScreen(),
+    const HomeTab(),
     const Text("Explore"),
     const Text("Categories"),
-    const Text("Profile"),
+    const Text("Messsages"),
   ];
   final _bottomNavigationItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-    BottomNavigationBarItem(icon: Icon(Icons.explore), label: "Explore"),
+    BottomNavigationBarItem(icon: Icon(Icons.storefront), label: "Explore"),
     BottomNavigationBarItem(icon: Icon(Icons.category), label: "Categories"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+    BottomNavigationBarItem(icon: Icon(Icons.message), label: "Messages"),
   ];
 
   @override
