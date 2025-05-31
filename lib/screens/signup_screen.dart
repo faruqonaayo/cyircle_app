@@ -8,7 +8,8 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Padding(
+        child: Container(
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,82 +30,89 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              Form(
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("First Name"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 500),
+                child: Form(
+                  child: Column(
+                    spacing: 16,
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("First Name"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                       ),
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Last Name"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Last Name"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                       ),
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Email"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Email"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textCapitalization: TextCapitalization.none,
+                        enableSuggestions: false,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Password"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          suffixIcon: Icon(Icons.visibility),
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                        enableSuggestions: false,
+                        textCapitalization: TextCapitalization.none,
+                        obscureText: true,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          label: Text("Confirm Password"),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          suffixIcon: Icon(Icons.visibility),
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                        enableSuggestions: false,
+                        textCapitalization: TextCapitalization.none,
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                            foregroundColor: Theme.of(
+                              context,
+                            ).colorScheme.onPrimary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadiusGeometry.circular(8),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                          ),
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      textCapitalization: TextCapitalization.none,
-                      enableSuggestions: false,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Password"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        suffixIcon: Icon(Icons.visibility),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                      enableSuggestions: false,
-                      textCapitalization: TextCapitalization.none,
-                      obscureText: true,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Confirm Password"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        suffixIcon: Icon(Icons.visibility),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                      enableSuggestions: false,
-                      textCapitalization: TextCapitalization.none,
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(8),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    ],
                   ),
                 ),
               ),
