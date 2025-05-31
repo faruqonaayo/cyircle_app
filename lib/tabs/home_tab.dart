@@ -1,7 +1,58 @@
 import 'package:flutter/material.dart';
 
+import 'package:cyircle_app/screens/add_new_category_screen.dart';
+
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
+
+  void _goToScreen(BuildContext context, Widget screen) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => screen));
+  }
+
+  void _showAddOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          height: 200,
+          child: Column(
+            children: [
+              Text(
+                "Select an option",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                spacing: 16,
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                        // _goToScreen(context, screen)
+                      },
+                      child: Text("Add Item"),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                        _goToScreen(context, AddNewCategoryScreen());
+                      },
+                      child: Text("Add Category"),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +139,7 @@ class HomeTab extends StatelessWidget {
                   _QuickActionButton(
                     icon: Icons.add_box_outlined,
                     label: 'Add',
-                    onTap: () {},
+                    onTap: () => _showAddOptions(context),
                   ),
                   _QuickActionButton(
                     icon: Icons.inventory_2_outlined,

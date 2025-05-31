@@ -49,6 +49,20 @@ class CyircleApp extends ConsumerWidget {
         bodyMedium: GoogleFonts.lato(color: colorScheme.onSurface),
         bodySmall: GoogleFonts.lato(color: colorScheme.onSurface),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          textStyle: TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          textStyle: TextStyle(fontWeight: FontWeight.w600, letterSpacing: 0.5),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
     );
   }
 
