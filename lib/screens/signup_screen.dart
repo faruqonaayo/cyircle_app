@@ -87,8 +87,8 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
 
-    response["status"] == "success" ? _formKey.currentState!.reset() : null;
-    
+    response["status"] == "success" ? Navigator.of(context).pop() : null;
+
     setState(() {
       _isSubmittingForm = false;
     });

@@ -1,3 +1,6 @@
+import 'package:cyircle_app/screens/home_screen.dart';
+import 'package:cyircle_app/screens/loading_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,7 +57,20 @@ class CyircleApp extends StatelessWidget {
       theme: _getThemeData(kColorScheme),
       darkTheme: _getThemeData(kDarkColorScheme),
       title: "Cyircle Application",
-      home: const OnboardingScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const LoadingScreen();
+          }
+
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+
+          return const OnboardingScreen();
+        },
+      ),
     );
   }
 }

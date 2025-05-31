@@ -42,4 +42,8 @@ class AuthServices {
       return {"status": "failure", "message": e.toString()};
     }
   }
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

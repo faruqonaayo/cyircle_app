@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
-    response["status"] == "success" ? _formKey.currentState!.reset() : null;
+    response["status"] == "success" ? Navigator.of(context).pop() : null;
 
     setState(() {
       _isSubmittingForm = false;
