@@ -7,8 +7,8 @@ import 'firebase_options.dart';
 
 import 'package:cyircle_app/screens/onboarding_screen.dart';
 import 'package:cyircle_app/providers/theme_mode_provider.dart';
-import 'package:cyircle_app/screens/home_screen.dart';
 import 'package:cyircle_app/screens/loading_screen.dart';
+import 'package:cyircle_app/widgets/app_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,7 +69,7 @@ class CyircleApp extends ConsumerWidget {
           }
 
           if (snapshot.hasData) {
-            return const HomeScreen();
+            return const AppLayout();
           }
 
           return const OnboardingScreen();

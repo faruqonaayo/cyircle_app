@@ -1,5 +1,6 @@
-import 'package:cyircle_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cyircle_app/services/auth_services.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
