@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:cyircle_app/screens/login_screen.dart';
 import 'package:cyircle_app/screens/signup_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:cyircle_app/widgets/theme_mode_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -100,6 +102,7 @@ class OnboardingScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(actions: [ThemeModeButton()]),
       body: Container(
         width: double.infinity,
         padding: EdgeInsets.all(16),

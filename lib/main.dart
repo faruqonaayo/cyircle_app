@@ -1,17 +1,19 @@
-import 'package:cyircle_app/screens/home_screen.dart';
-import 'package:cyircle_app/screens/loading_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'package:cyircle_app/screens/onboarding_screen.dart';
+import 'package:cyircle_app/providers/theme_mode_provider.dart';
+import 'package:cyircle_app/screens/home_screen.dart';
+import 'package:cyircle_app/screens/loading_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const CyircleApp());
+  runApp(const ProviderScope(child: CyircleApp()));
 }
 
 var kColorScheme = ColorScheme.fromSeed(
@@ -24,7 +26,7 @@ var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
 );
 
-class CyircleApp extends StatelessWidget {
+class CyircleApp extends ConsumerWidget {
   const CyircleApp({super.key});
   ThemeData _getThemeData(ColorScheme colorScheme) {
     return ThemeData().copyWith(
@@ -51,9 +53,11 @@ class CyircleApp extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentAppTheme = ref.watch(themeModeProvider);
+
     return MaterialApp(
-      themeMode: ThemeMode.light,
+      themeMode: currentAppTheme,
       theme: _getThemeData(kColorScheme),
       darkTheme: _getThemeData(kDarkColorScheme),
       title: "Cyircle Application",
