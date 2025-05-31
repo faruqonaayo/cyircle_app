@@ -7,12 +7,12 @@ void main() {
 }
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: Color.fromRGBO(79, 149, 157, 1),
+  seedColor: Color.fromRGBO(103, 148, 54, 1),
   brightness: Brightness.light,
 );
 
 var kDarkColorScheme = ColorScheme.fromSeed(
-  seedColor: Color.fromRGBO(79, 149, 157, 1),
+  seedColor: Color.fromRGBO(103, 148, 54, 1),
   brightness: Brightness.dark,
 );
 
