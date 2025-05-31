@@ -47,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
     Widget buildOnboardingButtons() {
       return SizedBox(
         child: Column(
-          spacing: 4,
+          spacing: 8,
           children: [
             SizedBox(
               width: double.infinity,
@@ -59,10 +59,15 @@ class OnboardingScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  padding: EdgeInsets.all(16),
                 ),
-                child: const Text("Sign Up"),
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
             ),
+
             SizedBox(
               width: double.infinity,
               child: TextButton(
@@ -71,8 +76,12 @@ class OnboardingScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  padding: EdgeInsets.all(16),
                 ),
-                child: const Text("Already have an account? Login"),
+                child: const Text(
+                  "Already have an account? Login",
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ],
@@ -93,7 +102,7 @@ class OnboardingScreen extends StatelessWidget {
                   buildOnboardingImage(),
                   const SizedBox(height: 32),
                   buildOnboardingText(),
-                  const SizedBox(height: 64),
+                  const SizedBox(height: 80),
                   buildOnboardingButtons(),
                 ],
               )
@@ -106,7 +115,7 @@ class OnboardingScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         buildOnboardingText(),
-                        const SizedBox(height: 64),
+                        const SizedBox(height: 80),
                         buildOnboardingButtons(),
                       ],
                     ),
