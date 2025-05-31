@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "788336366711",
+    "project_id": "cyircle-app-26c05",
+    "storage_bucket": "cyircle-app-26c05.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788336366711:android:fac04b213396b956bfe272",
+        "android_client_info": {
+          "package_name": "com.example.cyircle_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbY279Bd9X8WUihalUc4nICJVpcB0NzbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

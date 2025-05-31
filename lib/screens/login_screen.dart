@@ -1,7 +1,64 @@
+import 'package:cyircle_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  var _showPassword = false;
+  var _enteredEmail = "";
+  var _enteredPassword = "";
+  var _isSubmittingForm = false;
+
+  void _submitForm() async {
+    final isValid = _formKey.currentState!.validate();
+
+    if (!isValid) {
+      return;
+    }
+    _formKey.currentState!.save();
+
+    setState(() {
+      _isSubmittingForm = true;
+    });
+
+    final authServices = AuthServices();
+
+    final response = await authServices.login(_enteredEmail, _enteredPassword);
+
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          response["message"]!,
+          style: TextStyle(
+            color: response["status"] == "success"
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).colorScheme.onError,
+          ),
+        ),
+        backgroundColor: response["status"] == "success"
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.error,
+      ),
+    );
+
+    response["status"] == "success" ? _formKey.currentState!.reset() : null;
+
+    setState(() {
+      _isSubmittingForm = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +90,7 @@ class LoginScreen extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 500),
                 child: Form(
+                  key: _formKey,
                   child: Column(
                     spacing: 16,
                     children: [
@@ -46,6 +104,20 @@ class LoginScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         textCapitalization: TextCapitalization.none,
                         enableSuggestions: false,
+                        validator: (value) {
+                          final RegExp emailRegex = RegExp(
+                            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+                          );
+
+                          if (value == null || !emailRegex.hasMatch(value)) {
+                            return "Enter a valid email address";
+                          }
+
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          _enteredEmail = newValue!;
+                        },
                       ),
                       TextFormField(
                         decoration: InputDecoration(
@@ -53,18 +125,38 @@ class LoginScreen extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          suffixIcon: Icon(Icons.visibility),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showPassword = !_showPassword;
+                              });
+                            },
+                            child: Icon(
+                              _showPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                          ),
                         ),
                         keyboardType: TextInputType.visiblePassword,
                         enableSuggestions: false,
                         textCapitalization: TextCapitalization.none,
-                        obscureText: true,
+                        obscureText: !_showPassword,
+                        validator: (value) {
+                          if (value == null || value.trim().length < 6) {
+                            return "Password must not be less than 6 characters";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          _enteredPassword = newValue!;
+                        },
                       ),
                       const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: _isSubmittingForm ? null : _submitForm,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(
                               context,
@@ -77,10 +169,16 @@ class LoginScreen extends StatelessWidget {
                             ),
                             padding: EdgeInsets.symmetric(vertical: 16),
                           ),
-                          child: Text(
-                            "Login",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
+                          child: _isSubmittingForm
+                              ? SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Text(
+                                  "Login",
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
                         ),
                       ),
                     ],
