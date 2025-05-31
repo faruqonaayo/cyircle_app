@@ -9,7 +9,7 @@ class SignupScreen extends StatelessWidget {
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -100,6 +100,7 @@ class SignupScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(8),
                     ),
+                    padding: EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: Text(
                     "Sign Up",
