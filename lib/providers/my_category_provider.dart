@@ -7,11 +7,10 @@ import 'package:cyircle_app/services/category_service.dart';
 class MyCategoryProviderNotifier extends StateNotifier<List<Category>> {
   MyCategoryProviderNotifier() : super([]);
 
-  void loadCategories() async {
+  Future<void> loadCategories() async {
     final categories = await CategoryService().getUserCategories(
       FirebaseAuth.instance.currentUser!.uid,
     );
-
     state = categories;
   }
 

@@ -1,17 +1,21 @@
-import 'package:cyircle_app/models/category.dart';
-import 'package:cyircle_app/services/category_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddNewCategoryScreen extends StatefulWidget {
+import 'package:cyircle_app/models/category.dart';
+import 'package:cyircle_app/providers/my_category_provider.dart';
+import 'package:cyircle_app/services/category_service.dart';
+
+class AddNewCategoryScreen extends ConsumerStatefulWidget {
   const AddNewCategoryScreen({super.key});
 
   @override
-  State<AddNewCategoryScreen> createState() => _AddNewCategoryScreenState();
+  ConsumerState<AddNewCategoryScreen> createState() =>
+      _AddNewCategoryScreenState();
 }
 
-class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
+class _AddNewCategoryScreenState extends ConsumerState<AddNewCategoryScreen> {
   final _formKey = GlobalKey<FormState>();
   var _enteredName = "";
   var _enteredDescription = "";
@@ -75,6 +79,8 @@ class _AddNewCategoryScreenState extends State<AddNewCategoryScreen> {
     if (response != null) {
       newCategory.id = response.id;
       _formKey.currentState!.reset();
+      final myCategoryProviderNotifier = ref.read(myCategoryProvider.notifier);
+      myCategoryProviderNotifier.addCategory(newCategory);
     }
   }
 

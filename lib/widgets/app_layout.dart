@@ -1,3 +1,4 @@
+import 'package:cyircle_app/tabs/categories_tab.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cyircle_app/tabs/home_tab.dart';
@@ -17,7 +18,7 @@ class _AppLayoutState extends State<AppLayout> {
   final _screens = [
     const HomeTab(),
     const Text("Explore"),
-    const Text("Categories"),
+    const CategoriesTab(),
     const Text("Messsages"),
   ];
   final _bottomNavigationItems = [

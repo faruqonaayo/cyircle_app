@@ -32,7 +32,7 @@ class CategoryService {
         Category(
           name: data["name"],
           description: data["description"],
-          colors: data["colors"],
+          colors: [...data["colors"]],
           userId: userId,
         ),
       );
