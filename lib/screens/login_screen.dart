@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class SignupScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Create Account",
+                "Hey, Welcome Back!👋",
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
                 ),
               ),
               Text(
-                "Start keeping track of your items today!",
+                "Your items are in good condition!",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2,
@@ -33,22 +33,6 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   spacing: 16,
                   children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("First Name"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Last Name"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
                     TextFormField(
                       decoration: InputDecoration(
                         label: Text("Email"),
@@ -63,19 +47,6 @@ class SignupScreen extends StatelessWidget {
                     TextFormField(
                       decoration: InputDecoration(
                         label: Text("Password"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        suffixIcon: Icon(Icons.visibility),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                      enableSuggestions: false,
-                      textCapitalization: TextCapitalization.none,
-                      obscureText: true,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        label: Text("Confirm Password"),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -102,7 +73,7 @@ class SignupScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "Sign Up",
+                    "Login",
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 ),

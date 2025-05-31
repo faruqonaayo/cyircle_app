@@ -1,3 +1,4 @@
+import 'package:cyircle_app/screens/login_screen.dart';
 import 'package:cyircle_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +77,11 @@ class OnboardingScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
