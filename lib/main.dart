@@ -1,3 +1,4 @@
+import 'package:cyircle_app/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -48,7 +49,7 @@ class CyircleApp extends StatelessWidget {
       theme: _getThemeData(kColorScheme),
       darkTheme: _getThemeData(kDarkColorScheme),
       title: "Cyircle Application",
-      home: Scaffold(body: const Text("Welcome to cyircle app!")),
+      home: const OnboardingScreen(),
     );
   }
 }
